@@ -15,6 +15,7 @@ module.exports = {
   	address  : {type: 'string', required: true},
   	city 	 : {model: 'cities', required: true},
   	district : {model: 'districts', required: true},
+  	note  : {type: 'string', required: true},
   }
 };
 
