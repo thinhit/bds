@@ -1,0 +1,20 @@
+/*
+Theme Name:     Faq Child Theme
+Theme URI:      http://faq.facecrm.vn
+Description:    Child theme for FaceCRM.vn theme
+Author:         FaceCRMThemes
+Author URI:     http://facecrm.vn
+Template:       qaengine
+Version:        1.0
+*/
+@import url("font.css");
+body {
+	font-family: Tahoma!important;
+}
+
+.contact-block button {
+	width: 70px!important;
+}
+.user-info ul {
+	margin-left: 10px!important;
+}
