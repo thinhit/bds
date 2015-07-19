@@ -15,14 +15,18 @@ angular.module('app',
 */
 .config(['$stateProvider',   '$urlRouterProvider',   '$controllerProvider',   '$compileProvider',   '$filterProvider',   '$provide', 
 	function ($stateProvider,   $urlRouterProvider,   $controllerProvider,   $compileProvider,   $filterProvider,   $provide){
+        $urlRouterProvider
+            .otherwise('login');
 		$stateProvider
             .state('app', {
                 url: '/',
                 templateUrl: 'views/app.html',
-                /*controller: 'AppController'*/
             })
-            
-
+            .state('login', {
+                url: '/login',
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl'
+            })
 
 }])
 .run(['$rootScope', '$auth', '$state', '$stateParams', '$templateCache', function ($rootScope, $auth, $state, $stateParams, $templateCache){
@@ -32,7 +36,7 @@ angular.module('app',
     $rootScope.$state       = $state;
 
 
-/*    $rootScope.$on('$stateChangeStart', function (evt,toState,toParams) {
+    $rootScope.$on('$stateChangeStart', function (evt,toState,toParams) {
         if(toState.name.indexOf('app') !== -1){
             
             if(!$auth.getUser()){
@@ -43,7 +47,7 @@ angular.module('app',
             }
         }
     });
-*/
+
 
 
 

@@ -13,9 +13,9 @@ module.exports = {
   	phone 	 : {type: 'string', required: true},
   	email 	 : {type: 'email', required: true},
   	address  : {type: 'string', required: true},
-  	city 	 : {model: 'cities', required: true},
+/*  	city 	 : {model: 'cities', required: true},
   	district : {model: 'districts', required: true},
-  	note  : {type: 'string', required: true},
+*/  	note  : {type: 'string', required: true},
   }
 };
 
