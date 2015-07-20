@@ -25,7 +25,11 @@
 
 				<div class="form-group">
 				    <label for="refer">Người giới thiệu</label>
-				    <input type="text" class="form-control" id="refer" placeholder="Nhập mật khẩu" ng-model="frm.refer">
+				    <input type="text" class="form-control" id="refer" placeholder="Nhập mật khẩu" ng-model="frm.refer" >
+				    <p ng-if="getReferLoading"><i class="fa fa-spinner fa-spin"></i> Đang xác thực</p>
+				    <p class="text-danger" ng-if="!getReferLoading && (frm.refer && !frm.referValid)"> <i class="fa fa-check"></i> Email người giới thiệu không hợp lệ</p>
+				    <p class="text-success" ng-if="!getReferLoading && !(frm.refer && !frm.referValid)"><i class="fa fa-check"></i> Bạn có thể sử dụng email người giới thiệu này </p>
+				    
 				</div>
 				
 				<button type="submit" class="btn btn-default" ng-disabled="loginProcessing || (frm.refer && !frm.referValid)">Đăng ký</button>
