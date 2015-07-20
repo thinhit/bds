@@ -60,6 +60,7 @@ angular.module('app')
 					$scope.frm.referValid = false;
 					return;
 				}
+				$scope.frm.referId = resp.data.code;
 				$scope.frm.referValid = true;
 			})
 		}
@@ -67,6 +68,8 @@ angular.module('app')
 			$scope.registerSuccess = false;
 			$scope.loginErr        = "";
 			$scope.loginProcessing = true;
+			formData = angular.copy(formData);
+			formData['refer'] = formData.referId ? formData.referId : '';
 
 			$restful.post('user/signup', formData, function (err, resp){
 				$scope.loginProcessing = false;
