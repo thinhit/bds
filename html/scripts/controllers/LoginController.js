@@ -19,8 +19,61 @@ angular.module('app')
 					$scope.loginErr = "Sai thông tin đăng nhập, vui lòng thử lại";
 					return ;
 				}
-				$auth.setUser(resp.data);
-				$state.go('app')
+				var data = resp.data;
+				data['time_expired'] = (Date.now() / 1000) + 86400 * 1;
+				$auth.setUser(data);
+				$state.go('app');
+			})
+		}
+
+		$scope.frm             = {};
+		$scope.registerSuccess = false;
+		$scope.getReferLoading = false;
+		var timeout            = null;
+
+		if($stateParams.refer){
+			$scope.frm.refer = $stateParams.refer;
+		}
+
+		$scope.$watch('frm.refer', function (value){
+			$scope.getReferLoading = true;
+			if(timeout){
+				$scope.getReferLoading = false;
+				clearTimeout(timeout);
+			}
+			timeout = setTimeout(function() {
+				if(value){
+					var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+					if(filter.test(value)){
+						$scope.validRefer(value);
+					}
+				}
+				
+			}, 300);
+		});
+
+		$scope.validRefer = function (email){
+			$restful.get('user/validRefer', {refer: email}, function (err, resp){
+				$scope.getReferLoading = false;
+				if(err){
+					$scope.frm.referValid = false;
+					return;
+				}
+				$scope.frm.referValid = true;
+			})
+		}
+		$scope.register = function (formData){
+			$scope.registerSuccess = false;
+			$scope.loginErr        = "";
+			$scope.loginProcessing = true;
+
+			$restful.post('user/signup', formData, function (err, resp){
+				$scope.loginProcessing = false;
+				if(err){
+					$scope.loginErr = err;
+					return ;
+				}
+				$scope.registerSuccess = true;
 			})
 		}
 	}])

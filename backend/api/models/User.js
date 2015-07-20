@@ -6,6 +6,7 @@ module.exports = {
 		password 	: {type: 'string', required: true},
 		fullname	: {type: 'string', required: true},
 		phone		: {type: 'string', required: true},
+		refer		: {model: 'user'},
 		last_login 	: {type: 'date'}, // Use timestamp
 	},
 	// Hook on user create

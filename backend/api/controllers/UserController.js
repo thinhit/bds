@@ -8,26 +8,43 @@
 module.exports = {
 	signup: function (req, res, next){
 		if(req.body){
-			var username  = req.body.username,
-				password  = req.body.password,
-				fullname  = req.body.fullname;
+			var email    = req.body.username,
+				password = req.body.password,
+				fullname = req.body.fullname;
+				phone    = req.body.phone;
+				refer    = req.body.refer;
 
-			User.findOne({username: username}, function (err, doc){
+			var messageErr = "";
+			if(!email){messageErr = "Vui lòng nhập email"}
+			if(!password){messageErr = "Vui lòng nhập mật khẩu"}
+			if(!fullname){messageErr = "Vui lòng nhập họ tên"}
+			if(!phone){messageErr = "Vui lòng nhập số điện thoại"}
+
+			if(messageErr && messageErr !== ""){
+				return res.json({'error': true, 'message': messageErr, 'data': []});
+			}
+
+			User.findOne({email: email}, function (err, doc){
 				if(err){return res.json({'error': true, 'message': "SERVER.ERROR", 'data': []})}
 				if(doc){return res.json({'error': true, 'message': "USER.EXITS", 'data': []})}
 
-				User.create({
-					username	: username,
+				var data = {
+					email		: email,
 					password	: password,
 					fullname	: fullname,
-				}).exec(function (err, created){
+					phone    	: phone
+				};
+				if(refer){
+					data['refer'] = refer;
+				}
+
+				User.create(data).exec(function (err, created){
 					return res.json({
 						error	: (err) ? true : false,
 						message	: (err) ? err : "SUCCESS",
 						data 	: created || {}
 					})
-					}
-				);
+				});
 			})
 		}else {
 			return res.json({
@@ -75,8 +92,15 @@ module.exports = {
 				data: []
 			});	
 		}
-
-		
+	},
+	validRefer : function (req, res, next){
+		var email = req.query.refer;
+		UserService.hasUsername(email, function (has, user){
+			if(has){
+				return res.json({'error': false, 'message': "Người giới thiệu hợp lệ", 'data': {code: user.id}});
+			}
+			return res.json({'error': true, 'message': "Người giới thiệu không hợp lệ", 'data': []});
+		});
 	}
 	
 };

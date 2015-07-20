@@ -18,7 +18,7 @@ module.exports = {
 		});
 	},
 	hasUsername: function (username, callback){
-		User.findOne({username: username}, function (err, doc){
+		User.findOne({email: username}, function (err, doc){
 			callback((doc) ? true: false, doc);
 		});
 	}

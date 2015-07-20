@@ -8,11 +8,7 @@ angular.module('app',
     'ngSanitize'
 	]
 )
-/*.config(['$facebookProvider', function ($facebookProvider){
-    $facebookProvider.setAppId(fb_sdk.appId);
-    $facebookProvider.setPermissions(fb_sdk.permission);
-}])
-*/
+
 .config(['$stateProvider',   '$urlRouterProvider',   '$controllerProvider',   '$compileProvider',   '$filterProvider',   '$provide', 
 	function ($stateProvider,   $urlRouterProvider,   $controllerProvider,   $compileProvider,   $filterProvider,   $provide){
         $urlRouterProvider
@@ -27,6 +23,11 @@ angular.module('app',
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
             })
+            .state('register', {
+                url: '/register?refer',
+                templateUrl: 'views/register.html',
+                controller: 'LoginCtrl'
+            })
 
 }])
 .run(['$rootScope', '$auth', '$state', '$stateParams', '$templateCache', function ($rootScope, $auth, $state, $stateParams, $templateCache){
@@ -39,7 +40,7 @@ angular.module('app',
     $rootScope.$on('$stateChangeStart', function (evt,toState,toParams) {
         if(toState.name.indexOf('app') !== -1){
             
-            if(!$auth.getUser()){
+            if(!$auth.getUser() || $auth.getUser()['time_expired']  <= (Date.now() / 1000) ){
                 console.log('$stateChangeStart', $auth.getUser());
                 evt.preventDefault();
                 $auth.clearUser();
@@ -47,9 +48,6 @@ angular.module('app',
             }
         }
     });
-
-
-
 
     $auth.setToken();
 	
