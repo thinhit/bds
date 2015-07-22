@@ -12,22 +12,56 @@ angular.module('app',
 .config(['$stateProvider',   '$urlRouterProvider',   '$controllerProvider',   '$compileProvider',   '$filterProvider',   '$provide', 
 	function ($stateProvider,   $urlRouterProvider,   $controllerProvider,   $compileProvider,   $filterProvider,   $provide){
         $urlRouterProvider
-            .otherwise('login');
+            .otherwise('dat-lenh/danh-sach');
 		$stateProvider
             .state('app', {
+                abstract:true, 
                 url: '/',
                 templateUrl: 'views/app.html',
             })
             .state('login', {
-                url: '/login',
+                url: '/dang-nhap',
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
             })
             .state('register', {
-                url: '/register?refer',
+                url: '/dang-ky?refer',
                 templateUrl: 'views/register.html',
                 controller: 'LoginCtrl'
             })
+
+            .state('app.commands', {
+                abstract: true,
+                url: 'dat-lenh',
+                templateUrl: 'views/commands/index.html',
+            })
+
+            .state('app.commands.list', {
+                url: '/danh-sach',
+                templateUrl: 'views/commands/list.html',
+            })
+
+            .state('app.commands.create', {
+                url: '/tao',
+                templateUrl: 'views/commands/create.html',
+            })
+
+            .state('app.projects', {
+                abstract: true,
+                url: 'du-an',
+                templateUrl: 'views/projects/index.html',
+            })
+
+            .state('app.projects.list', {
+                url: '/danh-sach',
+                templateUrl: 'views/projects/list.html',
+            })
+
+            .state('app.projects.create', {
+                url: '/tao-du-an',
+                templateUrl: 'views/projects/create.html',
+            })
+
 
 }])
 .run(['$rootScope', '$auth', '$state', '$stateParams', '$templateCache', function ($rootScope, $auth, $state, $stateParams, $templateCache){

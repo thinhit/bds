@@ -8,6 +8,7 @@ module.exports = {
 		phone		: {type: 'string', required: true},
 		refer		: {model: 'user'},
 		last_login 	: {type: 'date'}, // Use timestamp
+		privilige 	: {type: 'integer', defaultsTo: function (){return 1}}, // Use timestamp 
 	},
 	// Hook on user create
 	beforeCreate: function (value, next){

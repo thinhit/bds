@@ -22,7 +22,7 @@ angular.module('app')
 				var data = resp.data;
 				data['time_expired'] = (Date.now() / 1000) + 86400 * 1;
 				$auth.setUser(data);
-				$state.go('app');
+				$state.go('app.commands.list');
 			})
 		}
 

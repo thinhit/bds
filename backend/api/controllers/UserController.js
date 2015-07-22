@@ -69,14 +69,17 @@ module.exports = {
 						}
 
 						var token = UserService.generationToken(user);
+						console.log('user', user);
 						return res.json({
 							"error"		: false,
 							"message"	: "SUCCESS",
 							"data"		: {
 								token: token,
 								user: {
+									id	: user.id,
 									fullname: user.fullname,
-									username: user.username
+									email: user.email,
+									privilige: user.privilige || 1 
 								}
 							}
 						})
