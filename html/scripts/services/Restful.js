@@ -5,7 +5,7 @@ angular.module('app')
 				callback = (data && typeof data == 'function') ? data : callback;
 				$http.get(ApiPath + resource, {params: data}).success(function (resp){
 					if(resp.error){
-						return callback(resp.message, null);
+						return callback(resp.error_message, null);
 					}
 					return  callback(null, resp);
 				}).error(function (error){
@@ -17,7 +17,7 @@ angular.module('app')
 				callback = (data && typeof data == 'function') ? data : callback;
 				$http.post(ApiPath + resource, data || {}).success(function (resp){
 					if(resp.error){
-						return callback(resp.message, null);
+						return callback(resp.error_message , null);
 					}
 					return  callback(null, resp);
 				}).error(function (error){

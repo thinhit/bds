@@ -15,9 +15,9 @@ module.exports = {
   	address : {type: 'string', required: true},
   	city 	: {model: 'cities', required: true},
   	district: {model: 'districts', required: true},
-  	area 	: {type: 'double', required: true},
+  	area 	: {type: 'string', required: true},
   	amount 	: {type: 'integer', required: true},
-  	discount : {type: 'double', required: true},
+  	discount_amount : {type: 'integer', required: true},
   	discount_type : {type: 'string', required: true},
   }
 };

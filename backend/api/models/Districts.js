@@ -8,7 +8,9 @@
 module.exports = {
 
   attributes: {
-
+	city_code: {},
+	district_code: {},
+	district_name: {},
   }
 };
 

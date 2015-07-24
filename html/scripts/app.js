@@ -6,7 +6,9 @@ angular.module('app',
 	'ui.router',
     'ngResource',
     'ngSanitize',
-    'textAngular'
+    'textAngular',
+    'ngFileUpload',
+    'toaster'
 	]
 )
 
@@ -61,6 +63,7 @@ angular.module('app',
             .state('app.projects.create', {
                 url: '/tao-du-an',
                 templateUrl: 'views/projects/create.html',
+                controller: 'CreateProjectCtrl'
             })
 
 

@@ -2,6 +2,9 @@
 <div ng-include="'views/partials/mobile-nav.html'"></div>
 
 <div class="container-fluid">
+    <toaster-container toaster-options="
+    {'close-button':{ 'toast-warning': true, 'toast-error': false } }">
+</toaster-container>
     <div class="row">
         <div ng-include="'views/partials/header.html'"></div>
 
