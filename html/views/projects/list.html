@@ -1,43 +1,22 @@
 <div class="clearfix"></div>
 <div class="row select-category">
     <div class="col-md-6 col-xs-6 current-category">
-        <span>Danh sách lệnh đã đặt</span>
+        <span>Danh sách dự án</span>
     </div>
-    <div class="col-md-6 col-xs-6">
-        <div class="select-categories-wrapper">
-            <div class="select-categories">
-                <select name='cat' id='move_to_category' class='select-grey-bg'>
-                    <option value='0' selected='selected'>Lọc theo thể loại</option>
-                    <option class="level-0" value="the-loai-cau-hoi/bao-loi/index.html">Báo lỗi</option>
-                    <option class="level-0" value="the-loai-cau-hoi/chia-se-kinh-nghiem/index.html">Chia sẻ kinh nghiệm</option>
-                    <option class="level-0" value="the-loai-cau-hoi/facebook-marketing/index.html">Facebook Marketing</option>
-                    <option class="level-0" value="the-loai-cau-hoi/google-adwords/index.html">Google AdWords</option>
-                    <option class="level-0" value="the-loai-cau-hoi/gop-y/index.html">Góp ý</option>
-                    <option class="level-0" value="the-loai-cau-hoi/hoi-dap-huong-dan/index.html">Hỏi đáp &#8211; hướng dẫn</option>
-                </select>
-            </div>
+<!--     <div class="col-md-6 col-xs-6">
+    <div class="select-categories-wrapper">
+        <div class="select-categories">
+            <select name='cat' id='move_to_category' class='select-grey-bg'>
+                <option value='0' selected='selected'>Lọc theo thể loại</option>
+            </select>
         </div>
     </div>
 </div>
+ --></div>
 
 <div class="row question-filter" id="question_filter">
-    <div class="col-md-6 col-xs-6 sort-questions">
-        <ul>
-            <li>
-                <a class="active" href="index.html">Tất cả</a>
-            </li>
-            <li>
-                <a class="" href="index9372.html?sort=vote">Thành công</a>
-            </li>
-            <li>
-                <a class="" href="indexe803.html?sort=unanswer">Đang xử lý</a>
-            </li>
-            <li>
-                <a class="" href="indexe803.html?sort=unanswer">Chưa xử lý</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-6 col-xs-6">
+    
+    <div class="col-md-6 col-xs-6 col-md-offset-6">
         <div class="number-of-questions-wrapper">
             <span class="number-of-questions-text">Số bản ghi mỗi trang:</span>
             <div class="number-of-questions">
@@ -53,169 +32,26 @@
 </div>
 <!-- END QUESTIONS-FILTER -->
 <div class="main-questions-list">
-    <div class="table-responsive">
-        <table class="table table-border">
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    #Thông dự án
-                </th>
-                <th>
-                    Thông khách hàng
-                </th>
-                <th>
-                    Thông thanh toán
-                </th>
-                <th>
-                    Trạng thái
-                </th>
-                <th>
-                    Tác vụ
-                </th>
-            </tr>
+    <div class="row1">
+        <div class="col-md-6" ng-repeat="item in list_projects">
+            <div class="media">
+                <div class="media-left pull-left">
+                    <a href="#">
+                        <img class="media-object" src="https://avatars3.githubusercontent.com/u/618009?v=3&s=96" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{item.title}}</h4>
+                    <p ng-bind-html="item.content">
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
 
-            <tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    <p><strong>Dự án Trung Văn 1 </strong><label class="label label-success">Đang chạy</label> </p>
-                    <p><strong>Chủ đầu tư : </strong> Trung Văn Building <br/></p>
-
-                </td>
-                <td>
-                    <p><i class="fa fa-user"></i> Nguyễn Văn Thịnh</p>
-                    <p><i class="fa fa-inbox"></i> thinhnv@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123.4356.678</p>
-                    <p><i class="fa fa-info"></i> Số 18 - Tam Trinh - Hai Bà Trưng - Hà Nội</p>
-                </td>
-                <td>
-                    <p><strong>Số tiền/căn </strong> : 2.000.000.000 vnđ</p>
-                    <p><strong>Số % hoa hồng </strong> : 2%</p>
-                    <p><strong>Tổng tiền hoa hông </strong> : 100.000.000 vnđ</p>
-                </td>
-                <td>
-                    <label class="label label-success">Thành công</label>
-                </td>
-                <td>
-                    <button class="btn btn-success btn-sm">Chỉnh sửa</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    <p><strong>Dự án Trung Văn 1 </strong><label class="label label-success">Đang chạy</label> </p>
-                    <p><strong>Chủ đầu tư : </strong> Trung Văn Building <br/></p>
-
-                </td>
-                <td>
-                    <p><i class="fa fa-user"></i> Nguyễn Văn Thịnh</p>
-                    <p><i class="fa fa-inbox"></i> thinhnv@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123.4356.678</p>
-                    <p><i class="fa fa-info"></i> Số 18 - Tam Trinh - Hai Bà Trưng - Hà Nội</p>
-                </td>
-                <td>
-                    <p><strong>Số tiền/căn </strong> : 2.000.000.000 vnđ</p>
-                    <p><strong>Số % hoa hồng </strong> : 2%</p>
-                    <p><strong>Tổng tiền hoa hông </strong> : 100.000.000 vnđ</p>
-                </td>
-                <td>
-                    <label class="label label-danger">Bị hủy</label>
-                </td>
-                <td>
-                    <button class="btn btn-success btn-sm">Chỉnh sửa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    <p><strong>Dự án Trung Văn 1 </strong><label class="label label-success">Đang chạy</label> </p>
-                    <p><strong>Chủ đầu tư : </strong> Trung Văn Building <br/></p>
-
-                </td>
-                <td>
-                    <p><i class="fa fa-user"></i> Nguyễn Văn Thịnh</p>
-                    <p><i class="fa fa-inbox"></i> thinhnv@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123.4356.678</p>
-                    <p><i class="fa fa-info"></i> Số 18 - Tam Trinh - Hai Bà Trưng - Hà Nội</p>
-                </td>
-                <td>
-                    <p><strong>Số tiền/căn </strong> : 2.000.000.000 vnđ</p>
-                    <p><strong>Số % hoa hồng </strong> : 2%</p>
-                    <p><strong>Tổng tiền hoa hông </strong> : 100.000.000 vnđ</p>
-                </td>
-                <td>
-                    <label class="label label-success">Thành công</label>
-                </td>
-                <td>
-                    <button class="btn btn-success btn-sm">Chỉnh sửa</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    <p><strong>Dự án Trung Văn 1 </strong><label class="label label-success">Đang chạy</label> </p>
-                    <p><strong>Chủ đầu tư : </strong> Trung Văn Building <br/></p>
-
-                </td>
-                <td>
-                    <p><i class="fa fa-user"></i> Nguyễn Văn Thịnh</p>
-                    <p><i class="fa fa-inbox"></i> thinhnv@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123.4356.678</p>
-                    <p><i class="fa fa-info"></i> Số 18 - Tam Trinh - Hai Bà Trưng - Hà Nội</p>
-                </td>
-                <td>
-                    <p><strong>Số tiền/căn </strong> : 2.000.000.000 vnđ</p>
-                    <p><strong>Số % hoa hồng </strong> : 2%</p>
-                    <p><strong>Tổng tiền hoa hông </strong> : 100.000.000 vnđ</p>
-                </td>
-                <td>
-                    <label class="label label-success">Thành công</label>
-                </td>
-                <td>
-                    <button class="btn btn-success btn-sm">Chỉnh sửa</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    <p><strong>Dự án Trung Văn 1 </strong><label class="label label-success">Đang chạy</label> </p>
-                    <p><strong>Chủ đầu tư : </strong> Trung Văn Building <br/></p>
-
-                </td>
-                <td>
-                    <p><i class="fa fa-user"></i> Nguyễn Văn Thịnh</p>
-                    <p><i class="fa fa-inbox"></i> thinhnv@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123.4356.678</p>
-                    <p><i class="fa fa-info"></i> Số 18 - Tam Trinh - Hai Bà Trưng - Hà Nội</p>
-                </td>
-                <td>
-                    <p><strong>Số tiền/căn </strong> : 2.000.000.000 vnđ</p>
-                    <p><strong>Số % hoa hồng </strong> : 2%</p>
-                    <p><strong>Tổng tiền hoa hông </strong> : 100.000.000 vnđ</p>
-                </td>
-                <td>
-                    <label class="label label-success">Thành công</label>
-                </td>
-                <td>
-                    <button class="btn btn-success btn-sm">Chỉnh sửa</button>
-                </td>
-            </tr>
-        </table>
     </div>
+    
+
 </div>
 <!-- END MAIN-QUESTIONS-LIST -->
 <div class="row paginations home">

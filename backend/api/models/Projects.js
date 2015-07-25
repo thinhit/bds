@@ -19,6 +19,8 @@ module.exports = {
   	amount 	: {type: 'integer', required: true},
   	discount_amount : {type: 'integer', required: true},
   	discount_type : {type: 'string', required: true},
+    active : {type: 'boolean', required: true},
+
   }
 };
 

@@ -58,6 +58,7 @@ angular.module('app',
             .state('app.projects.list', {
                 url: '/danh-sach',
                 templateUrl: 'views/projects/list.html',
+                controller: 'ListProjectCtrl'
             })
 
             .state('app.projects.create', {
@@ -75,9 +76,8 @@ angular.module('app',
     $rootScope.$state       = $state;
 
 
-    $rootScope.$on('$stateChangeStart', function (evt,toState,toParams) {
+    $rootScope.$on('$stateChangeStart', function (evt, toState, toParams) {
         if(toState.name.indexOf('app') !== -1){
-            
             if(!$auth.getUser() || $auth.getUser()['time_expired']  <= (Date.now() / 1000) ){
                 console.log('$stateChangeStart', $auth.getUser());
                 evt.preventDefault();
