@@ -8,7 +8,8 @@ angular.module('app',
     'ngSanitize',
     'textAngular',
     'ngFileUpload',
-    'toaster'
+    'toaster',
+    'ui.bootstrap'
 	]
 )
 
@@ -91,3 +92,8 @@ angular.module('app',
 	
 
 }])
+.filter('vnNumber', function ($filter) {
+    return function (number) {
+        return $filter('number')(number).replace(/,/g, '.');
+    }
+})

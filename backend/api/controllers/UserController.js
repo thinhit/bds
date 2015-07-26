@@ -21,12 +21,12 @@ module.exports = {
 			if(!phone){messageErr = "Vui lòng nhập số điện thoại"}
 
 			if(messageErr && messageErr !== ""){
-				return res.json({'error': true, 'message': messageErr, 'data': []});
+				return res.json({'error': true, 'error_message': messageErr, 'data': []});
 			}
 
 			User.findOne({email: email}, function (err, doc){
-				if(err){return res.json({'error': true, 'message': "SERVER.ERROR", 'data': []})}
-				if(doc){return res.json({'error': true, 'message': "USER.EXITS", 'data': []})}
+				if(err){return res.json({'error': true, 'error_message': "SERVER.ERROR", 'data': []})}
+				if(doc){return res.json({'error': true, 'error_message': "USER.EXITS", 'data': []})}
 
 				var data = {
 					email		: email,
@@ -41,7 +41,7 @@ module.exports = {
 				User.create(data).exec(function (err, created){
 					return res.json({
 						error	: (err) ? true : false,
-						message	: (err) ? err : "SUCCESS",
+						error_message	: (err) ? err : "SUCCESS",
 						data 	: created || {}
 					})
 				});
@@ -49,7 +49,7 @@ module.exports = {
 		}else {
 			return res.json({
 				error: true,
-				message: "METHOD.NOT.ALLOW",
+				error_message: "METHOD.NOT.ALLOW",
 				data: []
 			});
 		}
@@ -65,14 +65,14 @@ module.exports = {
 				if(has){
 					UserService.comparePassword(password, user.password, function (err, isMatch){
 						if(err ||  !isMatch){
-							return res.json({'error': true, 'message': "PASSWORD.NOT.MATCH", 'data': []});
+							return res.json({'error': true, 'error_message': "PASSWORD.NOT.MATCH", 'data': []});
 						}
 
 						var token = UserService.generationToken(user);
 						console.log('user', user);
 						return res.json({
 							"error"		: false,
-							"message"	: "SUCCESS",
+							"error_message"	: "SUCCESS",
 							"data"		: {
 								token: token,
 								user: {
@@ -85,13 +85,13 @@ module.exports = {
 						})
 					})
 				}else {
-					return res.json({'error': true, 'message': "USER.EXITS", 'data': []});
+					return res.json({'error': true, 'error_message': "USER.EXITS", 'data': []});
 				}
 			})
 		}else {
 			return res.json({
 				error: true,
-				message: "METHOD.NOT.ALLOW",
+				error_message: "METHOD.NOT.ALLOW",
 				data: []
 			});	
 		}
@@ -100,9 +100,9 @@ module.exports = {
 		var email = req.query.refer;
 		UserService.hasUsername(email, function (has, user){
 			if(has){
-				return res.json({'error': false, 'message': "Người giới thiệu hợp lệ", 'data': {code: user.id}});
+				return res.json({'error': false, 'error_message': "Người giới thiệu hợp lệ", 'data': {code: user.id}});
 			}
-			return res.json({'error': true, 'message': "Người giới thiệu không hợp lệ", 'data': []});
+			return res.json({'error': true, 'error_message': "Người giới thiệu không hợp lệ", 'data': []});
 		});
 	}
 	

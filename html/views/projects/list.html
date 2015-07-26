@@ -32,30 +32,33 @@
 </div>
 <!-- END QUESTIONS-FILTER -->
 <div class="main-questions-list">
-    <div class="row1">
-        <div class="col-md-6" ng-repeat="item in list_projects">
+    <div class="row1 m-t-md">
+        
+        <div class="col-md-6 m-b-md" ng-repeat="item in list_projects">
             <div class="media">
                 <div class="media-left pull-left">
                     <a href="#">
-                        <img class="media-object" src="https://avatars3.githubusercontent.com/u/618009?v=3&s=96" alt="...">
+                        <img class="media-object" src="https://avatars3.githubusercontent.com/u/618009?v=3&s=96" alt="..." style="width: 150px;">
                     </a>
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">{{item.title}}</h4>
-                    <p ng-bind-html="item.content">
-                        
-                    </p>
+                    <p><strong>Giá trị/căn: </strong>{{item.amount | vnNumber}} vnđ</p>
+                    <p><strong>Diện tích: </strong>{{item.area}} m<sup>2</sup></p>
+                    <p><strong>Địa chỉ: </strong>{{item.address}}, {{item.district.district_name}}, {{item.city.city_name}}</p>
                 </div>
             </div>
         </div>
-
+        <div class="col-md-12 text-center" ng-if="loadingData">
+            Đang tải dữ liệu
+        </div>
     </div>
     
-
 </div>
 <!-- END MAIN-QUESTIONS-LIST -->
-<div class="row paginations home">
-    <div class="col-md-12">
+<div class="row home">
+    <div class="col-md-12 text-right" >
+        <pagination total-items="total" ng-model="currentPage" max-size="item_page" class="pagination-sm" boundary-links="true" rotate="false" ng-click="load()"></pagination>
     </div>
 </div>
 <!-- END MAIN-PAGINATIONS -->

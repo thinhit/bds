@@ -81,17 +81,27 @@ angular.module('app')
 
 .controller('ListProjectCtrl', ['$scope', '$state', '$stateParams', '$restful', '$auth', 'App', 'Upload','toaster', 
 	  function ($scope, $state, $stateParams, $restful, $auth, App, Upload, toaster){
-	  	$scope.list_projects = [];
+
+		$scope.item_page   = 20;
+		$scope.total       = 0;
+		$scope.currentPage = 1;
+		$scope.loadingData = true;
+
+		$scope.list_projects = [];
+
 	  	$scope.load = function (){
-	  		$restful.get('projects/show',  function (error, resp){
+	  		$scope.loadingData = true;
+	  		$restful.get('projects/show', {page: $scope.currentPage, item_page: $scope.item_page},  function (error, resp){
+	  			$scope.loadingData = false;
 				if(error){
 					toaster.pop('warning', 'Lỗi', error);
 				}else {
+					$scope.total         = resp.total;
 					$scope.list_projects = resp.data;
-					//toaster.pop('success', 'Thông báo', 'Đăng dự án thành công');
 				}
 			})
 	  	}
+
 	  	$scope.load();
 		
 	}])
